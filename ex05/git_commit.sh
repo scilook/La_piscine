@@ -1,4 +1,5 @@
-for i in {0..4}
-do
-	git rev-parse HEAD+^*$i
-done
+git rev-parse HEAD
+git rev-parse HEAD^
+git rev-parse HEAD^^
+git rev-parse HEAD^^^
+git rev-parse HEAD^^^^
