@@ -1,0 +1,1 @@
+ls -pt | awk 'BEGIN {ORS=", "}; {print $n}' | sed 's/, $/\n/'
