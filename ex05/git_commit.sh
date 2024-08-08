@@ -1,3 +1,4 @@
-for i:5
-	git rev-parse HEAD^*i
-
+for i in {0..4}
+do
+	git rev-parse HEAD+^*$i
+done
