@@ -1,1 +1,3 @@
-6f64504144cfcad92b4303b96a9fa485392d73ea
+for i:5
+	git rev-parse HEAD^*i
+
