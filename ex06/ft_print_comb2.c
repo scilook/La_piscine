@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 13:37:15 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/15 14:34:33 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/15 18:06:00 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_print_comb2(void)
 	int	digits_of_i[2];
 	int	digits_of_j[2];
 
+	i = 0;
 	while (i < 100)
 	{
 		j = i + 1;

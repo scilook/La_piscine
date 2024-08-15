@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_combn copy.c                              :+:      :+:    :+:   */
+/*   ft_print_combn.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:05:19 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/15 15:54:42 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/15 18:22:32 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	ft_print_combn_lines(int *n, int *i, char *chnbr)
 	while (chnbr[*i] < 0x3A)
 	{
 		write(1, chnbr, *n);
-		write(1, ", ", 2);
+		if (*chnbr != 0x3A - *n)
+			write(1, ", ", 2);
 		chnbr[*n - 1]++;
 	}
 }
@@ -49,5 +50,4 @@ void	ft_print_combn(int n)
 		}
 		ft_print_combn_lines(&n, &i, chnbr);
 	}
-	write(1, "\b\b", 2);
 }
