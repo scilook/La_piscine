@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:49:53 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/16 20:11:42 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/16 20:58:56 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int	main()
 {
 	int list[] = {99, 50, 10, 40, 50, 27, 11};
 	ft_sort_int_tab(list, sizeof(list) / 4);
-	for (int i = 0;i < sizeof(list) / 4; i++)
-		printf("%d", list[i]);
+	for (int i = 0;i < (int) sizeof(list) / 4; i++)
+		printf("%d, ", list[i]);
 }

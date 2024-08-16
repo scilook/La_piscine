@@ -6,11 +6,12 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:58:13 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/16 20:38:27 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/16 20:54:59 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+
 void	ft_ultimate_div_mod(int *a, int *b)
 {
 	int	tmp;

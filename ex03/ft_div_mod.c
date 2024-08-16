@@ -6,9 +6,11 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:55:47 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/16 20:40:05 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/16 20:54:51 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 void	ft_div_mod(int a, int b, int *div, int *mod)
 {
