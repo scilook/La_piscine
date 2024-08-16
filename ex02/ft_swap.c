@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:52:15 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/15 18:56:34 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/16 20:40:46 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,11 @@ void	ft_swap(int *a, int *b)
 	tmp = *a;
 	*a = *b;
 	*b = tmp;
+}
+
+int	main()
+{
+	int a = 5, b = 10;
+	ft_swap(&a, &b);
+	printf("%d, %d", a, b);
 }

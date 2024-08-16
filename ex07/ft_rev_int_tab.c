@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 08:55:51 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/16 11:58:06 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/16 20:34:13 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,11 @@ void	ft_rev_int_tab(int *tab, int size)
 		*(tab + size - i - 1) = tmp;
 		i++;
 	}
+}
+int	main()
+{
+	int list[] = {99, 50, 10, 40, 50, 27, 11};
+	ft_rev_int_tab(list, sizeof(list) / 4);
+	for (int i = 0;i < sizeof(list) / 4; i++)
+		printf("%d", list[i]);
 }

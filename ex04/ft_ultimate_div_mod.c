@@ -6,10 +6,11 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:58:13 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/15 18:56:42 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/16 20:38:27 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 void	ft_ultimate_div_mod(int *a, int *b)
 {
 	int	tmp;
@@ -17,4 +18,11 @@ void	ft_ultimate_div_mod(int *a, int *b)
 	tmp = *a;
 	*a = tmp / *b;
 	*b = tmp % *b;
+}
+
+int	main()
+{
+	int a = 5, b = 10;
+	ft_ultimate_div_mod(&a, &b);
+	printf("%d, %d", a, b);
 }

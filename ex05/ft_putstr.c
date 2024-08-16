@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 18:45:30 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/15 18:55:15 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/16 20:38:04 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,8 @@ void	ft_putstr(char *str)
 	while (*(str + cnt) != '\0')
 		cnt++;
 	write(1, str, cnt);
+}
+int main()
+{
+	ft_putstr("string");
 }
