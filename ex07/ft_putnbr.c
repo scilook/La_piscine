@@ -6,13 +6,12 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:00:36 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/15 18:09:16 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/17 16:30:51 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-//range_of_int: -2^31(0x80 00 00 00) ~ 2^31 - 1(0x7F FF FF FF)
 void	ft_putnbr(int nb)
 {
 	char	chnbr[10];
