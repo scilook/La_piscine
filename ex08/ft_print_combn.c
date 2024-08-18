@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:05:19 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/17 16:41:36 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/17 18:58:09 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,4 @@ void	ft_print_combn(int n)
 		}
 		ft_print_combn_lines(&n, &i, chnbr);
 	}
-}
-
-int	main()
-{
-	ft_print_combn(5);
 }
