@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 20:07:01 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/20 13:17:39 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/22 14:26:24 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@ char	*first_column(void *addr, char *digits)
 	int	i;
 
 	i = 0;
-	while (i < 8)
+	while (i < 16)
 	{
-	digits[14 - 2 * i] = *(char*)(addr + i) / 0x10 + '0';
-	if (*(char*)(addr + i) % 0x10 < 0x0A)
-		digits[15 - 2 * i] = *(char*)(addr + i) % 0x10 + '0';
+	if ((unsigned long long)(addr + i) % 0x10 < 0x0A)
+		digits[15 - i] = (unsigned long long)(addr + i) % 0x10 + '0';
 	else
-		digits[15 - 2 * i] = *(char*)(addr + i) % 0x10 - 0x0A + 'a';
+		digits[15 - i] = (unsigned long long)(addr + i) % 0x10 - 0x0A + 'a';
 	i++;
 	}
 	return (digits);
@@ -85,4 +84,10 @@ void	*ft_print_memory(void *addr, unsigned int size)
 		addr = addr + 16;
 	}
 	return addr;
+}
+
+int main()
+{
+	int a = 0x30003000;
+	ft_print_memory(&a, 8);
 }
