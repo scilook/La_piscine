@@ -6,11 +6,9 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 10:19:26 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/22 13:27:38 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/22 14:44:50 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#define _CRT_SECURE_NO_WARNINGS
 
 int	ft_strlen(char *str)
 {
@@ -38,10 +36,10 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 	return (ft_strlen(src) + dstlen);
 }
 
-/* #include <stdio.h>
+#include <stdio.h>
 int	main(void)
 {
 	char ch[] = "1234567890";
 	char dst[50] = "alaisalive";
-	printf("%d %s", ft_strlcat(dst, ch, 12), dst);
-} */
+	printf("%d %s", ft_strlcat(dst, ch, 5), dst);
+}
