@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 09:30:53 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/23 19:29:43 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/23 19:36:41 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_strlen(char *str)
 	return (cnt);
 }
 
-int	ft_strcmp(char *s1, char *s2, unsigned int n)
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
 	unsigned int	i;
 
