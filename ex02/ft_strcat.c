@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:30:48 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/22 13:20:48 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/23 16:42:01 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,3 @@ char	*ft_strcat(char *dest, char *src)
 	dest[dstlen + i] = '\0';
 	return (dest);
 }
-
-/* #include <stdio.h>
-int	main(void)
-{
-	char ch[] = {54,56,45,53,'\0'};
-	char dst[50] = "alaisalive";
-	printf("%s", ft_strcat(dst, ch));
-} */
