@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 09:30:53 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/23 17:00:01 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/23 19:29:43 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ char	*ft_strstr(char *str, char *to_find)
 	int	i;
 
 	i = -1;
-	while (str[++i] != '\0' && to_find[0] != '\0')
+	if (to_find[0] == '\0')
+		return (str);
+	while (str[++i] != '\0')
 		if (to_find[0] == str[i])
-			if (ft_strcmp(to_find, str + i, ft_strlen(to_find)) == 0)
-				break ;
-	return (str + i);
+			if (ft_strncmp(to_find, str + i, ft_strlen(to_find)) == 0)
+				return (str + i);
+	return ('\0');
 }
