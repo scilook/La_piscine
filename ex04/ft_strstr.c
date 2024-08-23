@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 09:30:53 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/23 16:42:03 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/23 17:00:01 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ int	ft_strcmp(char *s1, char *s2, unsigned int n)
 	if (ft_strlen(s1) > ft_strlen(s2))
 	{
 		while (s1[++i] != '\0' && i < n)
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+			if (s1[i] != s2[i])
+				return (s1[i] - s2[i]);
 	}
 	else
 	{
 		while (s2[++i] != '\0' && i < n)
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+			if (s1[i] != s2[i])
+				return (s1[i] - s2[i]);
 	}
 	return (0);
 }
