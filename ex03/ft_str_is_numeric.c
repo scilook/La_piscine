@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 13:41:31 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/20 12:46:22 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/24 19:45:47 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_str_is_numeric(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] >= 0x30 && str[i] <= 0x39)
+		if (str[i] >= '0' && str[i] <= '9')
 			i++;
 		else
 			return (0);

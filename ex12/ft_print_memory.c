@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 20:07:01 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/24 16:58:16 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/24 20:06:58 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ char	*ft_strcpy(char *dest, char *src)
 
 void	*first_column(unsigned long long *addr)
 {
-	int	i;
-	char base[17];
-	char digits[16];
-	unsigned long long address = (unsigned long long) addr;
+	int					i;
+	char				base[17];
+	char				digits[16];
+	unsigned long long	address;
 
+	address = (unsigned long long) addr;
 	ft_strcpy(base, "0123456789abcdef");
 	i = 0;
 	while (i < 16)
@@ -43,10 +44,10 @@ void	*first_column(unsigned long long *addr)
 
 char	*second_column(char *addr, int size)
 {
-	int	i;
-	char digits[2];
-	char base[17];
-	char *address;
+	int		i;
+	char	digits[2];
+	char	base[17];
+	char	*address;
 
 	ft_strcpy(base, "0123456789abcdef");
 	address = addr;
@@ -64,9 +65,8 @@ char	*second_column(char *addr, int size)
 				write(1, "  ", 2);
 		}
 		else
-			write(1 , " ", 1);
+			write(1, " ", 1);
 	}
-
 }
 
 char	*third_column(char *addr, unsigned int size)
@@ -81,22 +81,10 @@ char	*third_column(char *addr, unsigned int size)
 		else
 			write(1, ".", 1);
 		i++;
-
 	}
 }
 
 void	*ft_print_memory(void *addr, unsigned int size)
 {
-	unsigned long long *address;
-
-/* 	while (size > 0)
-	{ */
-		first_column(addr);
-		write(1, ": ", 2);
-		second_column(addr, (int) size);
-/* 		third_column(addr, size);
- */		write(1, "\n", 1);
-		size = size - 0x10;
-/* 	}
- */}
-컴파일 오류 ㅋㅋ
+	unsigned long long	*address;
+}
