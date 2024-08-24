@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 09:15:54 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/24 13:57:18 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/24 14:07:18 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,6 @@ int	ft_error(char *base)
 	}
 	return (0);
 }
-
-
-// int	flag_counter(char *str, char *base)
-// {
-// 	int flag;
-// 	int i;
-
-// 	int i = 0;
-// 	flag = 1;
-// 	while(i < ft_strlen(base))
-// 		if (str[i] == '-')
-// 			flag = -flag;
-// 		if (str)
-
-// }
 
 int	ft_atoi_base(char *str, char *base)
 {
@@ -84,11 +69,4 @@ int	ft_atoi_base(char *str, char *base)
 			flag = -flag;
 	}
 	return (flag * value);
-}
-
-#include <stdio.h>
-
-int main()
-{
-	printf("%d", ft_atoi_base("-+937-3747", "937"));
 }
