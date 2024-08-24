@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 12:29:12 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/20 12:45:33 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/23 21:00:18 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	int	i;
 
 	i = 0;
-	while (*(src + i) != '\0' && i < n)
+	while (src[i] != '\0' && i < n)
 		dest[i++] = src[i];
 	while (i < n)
 		dest[i++] = '\0';

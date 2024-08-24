@@ -6,61 +6,77 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 20:07:01 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/22 14:26:24 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/24 16:58:16 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-char	*first_column(void *addr, char *digits)
+char	*ft_strcpy(char *dest, char *src)
 {
 	int	i;
 
 	i = 0;
-	while (i < 16)
-	{
-	if ((unsigned long long)(addr + i) % 0x10 < 0x0A)
-		digits[15 - i] = (unsigned long long)(addr + i) % 0x10 + '0';
-	else
-		digits[15 - i] = (unsigned long long)(addr + i) % 0x10 - 0x0A + 'a';
-	i++;
-	}
-	return (digits);
+	while (*(src + i) != '\0')
+		dest[i++] = src[i];
+	dest[i] = src[i];
+	return (dest);
 }
 
-char	*second_column(void *addr, unsigned int *size, char *digits) /* size가 홀수면 쓰레기 값을 불러옴 */
+void	*first_column(unsigned long long *addr)
 {
 	int	i;
-	int	j;
+	char base[17];
+	char digits[16];
+	unsigned long long address = (unsigned long long) addr;
 
-	j = 0;
-	while (j < 8)
+	ft_strcpy(base, "0123456789abcdef");
+	i = 0;
+	while (i < 16)
 	{
-		i = 0;
-		while (i < 2 && *size > 0) /* *addr는 stack?mem? */
+		digits[15 - i] = base[address % 0x10];
+		address /= 0x10;
+		i++;
+	}
+	write(1, digits, 16);
+}
+
+char	*second_column(char *addr, int size)
+{
+	int	i;
+	char digits[2];
+	char base[17];
+	char *address;
+
+	ft_strcpy(base, "0123456789abcdef");
+	address = addr;
+	i = -1;
+	{
+		if (i % 3 != 2)
 		{
-			digits[5 * j + 2 - 2 * i] = *(char*)(addr + i * j) / 0x10 + '0';
-			if (*(char*)addr % 0x10 < 0x0A)
-				digits[5 * j + 3 - 2 * i] = *(char*)(addr + i * j) % 0x10 + '0';
+			if (size-- > 0)
+			{
+				digits[0] = base[*addr / 0x10];
+				digits[1] = base[*(addr++) % 0x10];
+				write(1, digits, 2);
+			}
 			else
-				digits[5 * j + 3 - 2 * i] = *(char*)(addr + i * j) % 0x10 - 0x0A + 'a';
-			i++;
+				write(1, "  ", 2);
 		}
-		digits[5 * i - 1] = ' ';
-		*size = *size - 2;
-		j++;
+		else
+			write(1 , " ", 1);
 	}
-	return (digits);
+
 }
 
-char	*third_column(void *addr, unsigned int size)
+char	*third_column(char *addr, unsigned int size)
 {
 	int	i;
 
 	i = 0;
 	while (i < 16)
 	{
-		if (*(char*)(addr + i) >= 0x20 && *(char*)(addr + i) <= 0x7E)
+		if ((addr + i) >= 0x20 && (addr + i) <= 0x7E)
 			write(1, addr + i, 1);
 		else
 			write(1, ".", 1);
@@ -69,25 +85,18 @@ char	*third_column(void *addr, unsigned int size)
 	}
 }
 
-
 void	*ft_print_memory(void *addr, unsigned int size)
 {
-	char	*digits;
+	unsigned long long *address;
 
-	while (size > 0)
-	{
-		write(1, first_column(addr, digits), 16);
+/* 	while (size > 0)
+	{ */
+		first_column(addr);
 		write(1, ": ", 2);
-		write(1, second_column(addr, &size, digits), 40); /* 몇너야됨? */
-		third_column(addr, size);
-		write(1, "\n", 1);
-		addr = addr + 16;
-	}
-	return addr;
-}
-
-int main()
-{
-	int a = 0x30003000;
-	ft_print_memory(&a, 8);
-}
+		second_column(addr, (int) size);
+/* 		third_column(addr, size);
+ */		write(1, "\n", 1);
+		size = size - 0x10;
+/* 	}
+ */}
+컴파일 오류 ㅋㅋ
