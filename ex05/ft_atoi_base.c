@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 09:15:54 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/24 14:07:18 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/24 15:19:24 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,23 @@ int	ft_error(char *base)
 	return (0);
 }
 
+int	find_in_base(char c, char *base)
+{
+	int	i;
+
+	i = 0;
+	while (base[i] != '\0')
+	{
+		if (base[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
 int	ft_atoi_base(char *str, char *base)
 {
 	int	i;
-	int	j;
-	int	k;
 	int	value;
 	int	flag;
 
@@ -53,19 +65,13 @@ int	ft_atoi_base(char *str, char *base)
 	i = -1;
 	while (str[++i] != '\0')
 	{
-		j = -1;
-		A:
-		while (++j < ft_strlen(base))
-			if (str[i] == base[j])
-			{
-				value = ft_strlen(base) * value + j;
-				k = -1;
-				while (k < ft_strlen(base))
-					if (str[i + 1] == base[++k])
-						goto A;
-				return ((flag * value));
-			}
-		if (str[i] == '-')
+		if (find_in_base(str[i], base) != -1)
+		{
+			value = ft_strlen(base) * value + find_in_base(str[i], base);
+			if (find_in_base(str[i + 1], base) == -1)
+				break ;
+		}
+		else if (str[i] == '-')
 			flag = -flag;
 	}
 	return (flag * value);
