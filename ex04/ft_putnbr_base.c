@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 17:08:43 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/24 10:27:26 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/24 15:30:37 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strlen(char *str)
 	return (cnt);
 }
 
-void	*base_encoder(long long int n, char *base)
+void	base_encoder(long long int n, char *base)
 {
 	int		radix;
 	int		i;
