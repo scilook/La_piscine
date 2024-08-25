@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 20:30:52 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/24 20:34:58 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/25 17:33:58 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	main(int argc, char **argv)
 {
 	int	i;
 
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (i++ < argc)
 	{
 		write(1, argv[i], ft_strlen(argv[i]));
 		write(1, "\n", 1);
