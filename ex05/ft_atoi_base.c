@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 09:15:54 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/25 16:51:08 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/25 16:54:23 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,14 @@ int	ft_atoi_base(char *str, char *base)
 		{
 			value = ft_strlen(base) * value + find_in_base(str[i], base);
 			if (find_in_base(str[i + 1], base) == -1)
-				return (flag * value);
+				break ;
 		}
 		else if (str[i] == '-')
 			flag = -flag;
 		else if (str[i] == '+')
-			flag = flag;
+			continue ;
 		else
-			return (flag * value);
+			break ;
 	}
+	return (flag * value);
 }

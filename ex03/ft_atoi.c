@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 16:02:20 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/25 16:51:11 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/25 17:01:02 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ int	find_in_base(char c, char *base)
 	return (-1);
 }
 
+void	whitespace_skip(int *i, char *str)
+{
+	*i = -1;
+	while (find_in_base(str[++(*i)], " \x09\x0a\x0b\x0c\x0d") != -1)
+		continue ;
+	(*i)--;
+}
+
 int	ft_atoi(char *str)
 {
 	int	i;
@@ -42,23 +50,21 @@ int	ft_atoi(char *str)
 
 	value = 0;
 	flag = 1;
-	i = -1;
-	while (find_in_base(str[++i], " \x09\x0a\x0b\x0c\x0d") != -1)
-		continue ;
-	i--;
+	whitespace_skip(&i, str);
 	while (str[++i] != '\0')
 	{
 		if (str[i] >= 0x30 && str[i] <= 0x39)
 		{
 			value = 10 * value + str[i] - 0x30;
 			if ((str[i + 1] >= 0x30 && str[i + 1] <= 0x39) == 0)
-				return (flag * value);
+				break ;
 		}
 		else if (str[i] == '-')
 			flag = -flag;
 		else if (str[i] == '+')
 			continue ;
 		else
-			return (flag * value);
+			break ;
 	}
+	return (flag * value);
 }
