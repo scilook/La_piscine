@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 16:02:20 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/24 15:37:21 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/25 16:28:23 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,45 @@ int	ft_strlen(char *str)
 	return (cnt);
 }
 
+int	find_in_base(char c, char *base)
+{
+	int	i;
+
+	i = 0;
+	while (base[i] != '\0')
+	{
+		if (c == base[i])
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
 int	ft_atoi(char *str)
 {
 	int	i;
 	int	value;
 	int	flag;
 
-	i = -1;
 	value = 0;
 	flag = 1;
-	while (str[++i] != 0)
+	i = -1;
+	while (find_in_base(str[++i], " \x09\x0a\x0b\x0c\x0d") != -1)
+		continue ;
+	i--;
+	while (str[++i] != '\0')
 	{
 		if (str[i] >= 0x30 && str[i] <= 0x39)
 		{
 			value = 10 * value + str[i] - 0x30;
 			if ((str[i + 1] >= 0x30 && str[i + 1] <= 0x39) == 0)
-				break ;
+				return (flag * value);
 		}
 		else if (str[i] == '-')
 			flag = -flag;
+		else if (str[i] == '+')
+			continue ;
+		else
+			return (flag * value);
 	}
-	return (flag * value);
 }
