@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:12:32 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/25 14:54:35 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/25 17:17:32 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strcapitalize(char *str)
 	while (str[i] != '\0')
 	{
 		if (is_alnum(str[i]) == 0)
-			if (str[i + 1] >= 'a' && str[i + 1] <= 'z') // i + 1이면 문제가 있을 수 있음
+			if (str[i + 1] >= 'a' && str[i + 1] <= 'z')
 				str[i + 1] -= 0x20;
 		i++;
 	}
