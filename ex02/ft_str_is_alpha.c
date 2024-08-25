@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 13:30:24 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/20 12:45:34 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/25 14:58:29 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_str_is_alpha(char *str)
 		{
 			if (str[i] >= 'a' || str[i] <= 'Z')
 				i++;
+			else
+				return (0);
 		}
 		else
 			return (0);
