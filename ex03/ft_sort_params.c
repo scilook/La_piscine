@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 20:38:33 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/25 12:40:31 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/26 21:48:54 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_sort_int_tab(char **tab, int size)
 		while (i > 0)
 		{
 			tmp = tab[i];
-			if (ft_strcmp(tmp, tab[i - 1]) < 0)
+			if (ft_strcmp(tab[i], tab[i - 1]) < 0)
 			{
 				tab[i] = tab[i - 1];
 				tab[i - 1] = tmp;
