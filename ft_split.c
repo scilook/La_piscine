@@ -12,16 +12,6 @@
 
 #include <malloc.h>
 
-int	ft_strlen(char *str)
-{
-	int	cnt;
-
-	cnt = 0;
-	while (*(str + cnt) != '\0')
-		cnt++;
-	return (cnt);
-}
-
 int	find_in_base(char c, char *base)
 {
 	int	i;
@@ -42,7 +32,10 @@ char	*ft_strdup(char *src)
 	int		i;
 
 	i = 0;
-	p = (char *)malloc(ft_strlen(src) + 1);
+	while (src[i] != '\0')
+		i++;
+	p = (char *)malloc(i + 1);
+	i = 0;
 	while (src[i] != '\0')
 	{
 		p[i] = src[i];
@@ -88,7 +81,7 @@ char	**ft_split(char *str, char *charset)
 	i = 0;
 	strs = (char **)malloc(sizeof(char *) * (word_counter(str, charset) + 1));
 	start = ft_strdup(str);
-	while (find_in_base(str[i], charset) != -1)
+	while (find_in_base(str[i], charset) != -1 && str[i] != 0)
 	{
 		start++;
 		i++;
@@ -97,7 +90,7 @@ char	**ft_split(char *str, char *charset)
 	while (str[i] != 0)
 	{
 		end = start;
-		while (find_in_base(str[i], charset) == -1)
+		while (find_in_base(str[i], charset) == -1 && str[i] != 0)
 		{
 			end++;
 			i++;
@@ -106,7 +99,7 @@ char	**ft_split(char *str, char *charset)
 		strs[j++] = ft_strdup(start);
 		*end = charset[0];
 		start = end;
-		while (find_in_base(str[i], charset) != -1)
+		while (find_in_base(str[i], charset) != -1 && str[i] != 0)
 		{
 			start++;
 			i++;
@@ -116,36 +109,181 @@ char	**ft_split(char *str, char *charset)
 	return (strs);
 }
 
+#define GREEN "\033[38;5;84m"
+#define RED "\033[38;5;197m"
+#define GREY "\033[38;5;8m"
+#define DEFAULT "\033[0m"
+#define CHECKMARK "\xE2\x9C\x93"
+#define putchar custom_putchar
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-char	**ft_split(char *str, char *charset);
-
-void do_test(char* str, char* charset)
+typedef struct s_test
 {
-	char	**array;
-	int		i;
+    char *desc;
+    char *str;
+    char *charset;
+    char **expected;
+} t_test;
 
-	array = ft_split(str, charset);
-	i = 0;
-	while (array[i])
-	{
-		printf("'%s' (len=%d)\n", array[i], (int)strlen(array[i]));
-		i++;
-	}
-}
+int run_tests(t_test *tests, int count);
 
 int main(void)
 {
-	do_test(",1,2,3", ",");
-	do_test("Hello.,World,.!!KOKO!ZZZ.Hello.Good.World!KK!ZORO,Good", ",.!");
-	do_test("abcakaabcaakaabce", "bck");
-	do_test("|---AA-|GoogooGooGoo|aaaa-| Hello World Good| ^^|Nice Boat!", " |-");
-	do_test("               ", "     ");
-	do_test("  \t ", " \t");
-	do_test("123,456,789 ,", ",l1");
-	do_test("0tNue8", "0tNue8");
-	do_test("80hzNIGZYoIa3ATwY8dRCFmBBYx0RA", "AKfwjE5l");
-	return 0;
+    t_test tests[] = {
+       {
+            .desc = "Empty string with empty charset",
+            .str = "",
+            .charset = "",
+            .expected = (char *[1]) {0},
+        },
+        {
+            .desc = "Single-word string with empty charset",
+            .str = "hello",
+            .charset = "",
+            .expected = (char *[2]) {"hello", 0},
+        },
+        {
+            .desc = "String with leading and trailing separators",
+            .str = ",,hello,world,,",
+            .charset = ",",
+            .expected = (char *[3]) {"hello", "world", 0},
+        },
+        {
+            .desc = "String with multiple consecutive separators",
+            .str = "hello,,,,world",
+            .charset = ",",
+            .expected = (char *[3]) {"hello", "world", 0},
+        },
+        {
+            .desc = "String with repeated separators",
+            .str = "aaabbbaaaccc",
+            .charset = "ab",
+            .expected = (char *[]){ "ccc", 0 },
+        },
+    };
+    int count = sizeof(tests) / sizeof(tests[0]);
+
+    return run_tests(tests, count);
+}
+
+int run_tests(t_test *tests, int count)
+{
+    int i;
+    int error = 0;
+
+    for (i = 0; i < count; i++)
+    {
+        char **result = ft_split(tests[i].str, tests[i].charset);
+
+        if (!result && !tests[i].expected)
+        {
+            printf(GREEN CHECKMARK GREY " [%d] %s\n" DEFAULT, i + 1, tests[i].desc);
+        }
+        else if (!result || !tests[i].expected)
+        {
+            printf(RED "[%d] %s got \"", i + 1, tests[i].desc);
+            if (result)
+            {
+                printf("%s", result[0]);
+                for (int j = 1; result[j]; j++)
+                {
+                    printf("\", \"%s", result[j]);
+                }
+            }
+            else
+            {
+                printf("(null)");
+            }
+            printf("\" instead of \"");
+            if (tests[i].expected)
+            {
+                printf("%s", tests[i].expected[0]);
+                for (int j = 1; tests[i].expected[j]; j++)
+                {
+                    printf("\", \"%s", tests[i].expected[j]);
+                }
+            }
+            else
+            {
+                printf("(null)");
+            }
+            printf("\"\n" DEFAULT);
+            error -= 1;
+        }
+        else
+        {
+            int j = 0;
+            while (tests[i].expected[j] && result[j])
+            {
+                if (strcmp(tests[i].expected[j], result[j]) != 0)
+                {
+                    printf(RED "[%d] %s Element %d: expected \"%s\", got \"%s\"\n" DEFAULT, i + 1, tests[i].desc, j, tests[i].expected[j], result[j]);
+                    error -= 1;
+                    break;
+                }
+                j++;
+            }
+
+            if (tests[i].expected[j] != result[j])
+            {
+                printf(RED "[%d] %s got \"", i + 1, tests[i].desc);
+                if (result)
+                {
+                    printf("%s", result[0]);
+                    for (int j = 1; result[j]; j++)
+                    {
+                        printf("\", \"%s", result[j]);
+                    }
+                }
+                else
+                {
+                    printf("(null)");
+                }
+                printf("\" instead of \"");
+                if (tests[i].expected)
+                {
+                    printf("%s", tests[i].expected[0]);
+                    for (int j = 1; tests[i].expected[j]; j++)
+                    {
+                        printf("\", \"%s", tests[i].expected[j]);
+                    }
+                }
+                else
+                {
+                    printf("(null)");
+                }
+                printf("\"\n" DEFAULT);
+                error -= 1;
+            }
+            else
+            {
+                printf(GREEN CHECKMARK GREY " [%d] %s got \"", i + 1, tests[i].desc);
+                if (result)
+                {
+                    printf("%s", result[0]);
+                    for (int j = 1; result[j]; j++)
+                    {
+                        printf("\", \"%s", result[j]);
+                    }
+                }
+                printf("\" as expected\n" DEFAULT);
+            }
+        }
+
+        if (result)
+        {
+            int j = 0;
+            while (result[j])
+            {
+                free(result[j]);
+                j++;
+            }
+            free(result);
+        }
+    }
+
+    return (error);
 }

@@ -6,21 +6,11 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:00:48 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/30 14:00:05 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/29 17:52:16 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <malloc.h>
-
-int	ft_strlen(char *str)
-{
-	int	cnt;
-
-	cnt = 0;
-	while (*(str + cnt) != '\0')
-		cnt++;
-	return (cnt);
-}
 
 int	find_in_base(char c, char *base)
 {
@@ -42,7 +32,10 @@ char	*ft_strdup(char *src)
 	int		i;
 
 	i = 0;
-	p = (char *)malloc(ft_strlen(src) + 1);
+	while (src[i] != '\0')
+		i++;
+	p = (char *)malloc(i + 1);
+	i = 0;
 	while (src[i] != '\0')
 	{
 		p[i] = src[i];
@@ -83,25 +76,35 @@ char	**ft_split(char *str, char *charset)
 	char	*start;
 	char	*end;
 	int		i;
+	int		j;
 
+	i = 0;
 	strs = (char **)malloc(sizeof(char *) * (word_counter(str, charset) + 1));
 	start = ft_strdup(str);
-	i = 0;
-	while (*start != '\0')
+	while (find_in_base(str[i], charset) != -1 && str[i] != 0)
 	{
-		while (find_in_base(start[i], charset) > -1)
-			i++;
-		end = start + i;
-		*end = 0;
-		if (ft_strlen(start) == 0)
-			i--;
-		else
-			strs[i] = ft_strdup(start);
-		while (find_in_base(start[i], charset) != -1)
-			i++;
-		start = end + i;
+		start++;
 		i++;
 	}
-	strs[i] = 0;
+	j = 0;
+	while (str[i] != 0)
+	{
+		end = start;
+		while (find_in_base(str[i], charset) == -1 && str[i] != 0)
+		{
+			end++;
+			i++;
+		}
+		*end = 0;
+		strs[j++] = ft_strdup(start);
+		*end = charset[0];
+		start = end;
+		while (find_in_base(str[i], charset) != -1 && str[i] != 0)
+		{
+			start++;
+			i++;
+		}
+	}
+	strs[j] = 0;
 	return (strs);
 }
