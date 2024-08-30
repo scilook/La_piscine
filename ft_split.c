@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:00:48 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/30 14:00:05 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/30 18:30:48 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,25 +83,69 @@ char	**ft_split(char *str, char *charset)
 	char	*start;
 	char	*end;
 	int		i;
+	int		j;
 
+	i = 0;
 	strs = (char **)malloc(sizeof(char *) * (word_counter(str, charset) + 1));
 	start = ft_strdup(str);
-	i = 0;
-	while (*start != '\0')
+	while (find_in_base(str[i], charset) != -1)
 	{
-		while (find_in_base(start[i], charset) > -1)
-			i++;
-		end = start + i;
-		*end = 0;
-		if (ft_strlen(start) == 0)
-			i--;
-		else
-			strs[i] = ft_strdup(start);
-		while (find_in_base(start[i], charset) != -1)
-			i++;
-		start = end + i;
+		start++;
 		i++;
 	}
-	strs[i] = 0;
+	j = 0;
+	while (str[i] != 0)
+	{
+		end = start;
+		while (find_in_base(str[i], charset) == -1)
+		{
+			end++;
+			i++;
+		}
+		*end = 0;
+		strs[j++] = ft_strdup(start);
+		*end = charset[0];
+		start = end;
+		while (find_in_base(str[i], charset) != -1)
+		{
+			start++;
+			i++;
+		}
+	}
+	strs[j] = 0;
 	return (strs);
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char	**ft_split(char *str, char *charset);
+
+void do_test(char* str, char* charset)
+{
+	char	**array;
+	int		i;
+
+	array = ft_split(str, charset);
+	i = 0;
+	while (array[i])
+	{
+		printf("'%s' (len=%d)\n", array[i], (int)strlen(array[i]));
+		i++;
+	}
+}
+
+int main(void)
+{
+	do_test(",1,2,3", ",");
+	do_test("Hello.,World,.!!KOKO!ZZZ.Hello.Good.World!KK!ZORO,Good", ",.!");
+	do_test("abcakaabcaakaabce", "bck");
+	do_test("|---AA-|GoogooGooGoo|aaaa-| Hello World Good| ^^|Nice Boat!", " |-");
+	do_test("               ", "     ");
+	do_test("  \t ", " \t");
+	do_test("123,456,789 ,", ",l1");
+	do_test("0tNue8", "0tNue8");
+	do_test("80hzNIGZYoIa3ATwY8dRCFmBBYx0RA", "AKfwjE5l");
+	return 0;
 }

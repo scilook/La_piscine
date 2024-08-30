@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 19:16:30 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/29 16:57:34 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/30 11:44:43 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,4 @@ char	*ft_strdup(char *src)
 	}
 	p[i] = '\0';
 	return (p);
-}
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-char	*ft_strdup(char *src);
-
-int main(void)
-{
-	printf("Your: %s\n", ft_strdup("Hello World!"));
-	printf("CStdLib: %s\n", strdup("Hello World!"));
-	printf("Your: %s\n", ft_strdup("ㅋㅋㅋ"));
-	printf("CStdLib: %s\n", strdup("ㅋㅋㅋ"));
-	return 0;
 }
