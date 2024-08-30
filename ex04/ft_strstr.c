@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 09:30:53 by hyeson            #+#    #+#             */
-/*   Updated: 2024/08/23 19:36:41 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/08/25 20:24:19 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ char	*ft_strstr(char *str, char *to_find)
 		if (to_find[0] == str[i])
 			if (ft_strncmp(to_find, str + i, ft_strlen(to_find)) == 0)
 				return (str + i);
-	return ('\0');
+	return ("\0");
 }
