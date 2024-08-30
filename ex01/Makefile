@@ -14,27 +14,25 @@ CC=cc
 AR=ar
 CFLAGS=-c -Wall -Wextra -Werror
 ARFLAGS=-r
-LDLIBS=./includes/ft.h
-OBJS=$(wildcard ./srcs/*.o)
 CS=$(wildcard ./srcs/*.c)
+OBJS=$(CS:.c=.o)
+INCLUDES=./includes/ft.h
 TARGET=libft.a
 
-%.o: $(CS)
-	$(CC) $(CFLAGS) $(LDLIBS) $< -o $@ (CS)
+%.o: %.c $(INCLUDES)
+	$(CC) $(CFLAGS) $< -o $@
 
 $(TARGET): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $(OBJS)
 
 all: $(TARGET)
 
-clean: rm -f %.o
+clean:
+	rm -f $(OBJS)
 
-fclean:
-	rm -f %.o
+fclean: clean
 	rm -f $(TARGET)
 
-re:
-	fclean
-	all
+re: fclean all
 
 .PHONY: all clean fclean re
