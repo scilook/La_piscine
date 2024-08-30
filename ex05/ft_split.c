@@ -70,6 +70,16 @@ unsigned int	word_counter(char *str, char *charset)
 	return (cnt);
 }
 
+char	*skip_inset(char *str, char *charset, int *i, char *start)
+{
+	while (find_in_base(str[*i], charset) != -1 && str[*i] != 0)
+	{
+		(*i)++;
+		start++;
+	}
+	return (start);
+}
+
 char	**ft_split(char *str, char *charset)
 {
 	char	**strs;
@@ -81,29 +91,18 @@ char	**ft_split(char *str, char *charset)
 	i = 0;
 	strs = (char **)malloc(sizeof(char *) * (word_counter(str, charset) + 1));
 	start = ft_strdup(str);
-	while (find_in_base(str[i], charset) != -1 && str[i] != 0)
-	{
-		start++;
-		i++;
-	}
+	start = skip_inset(str, charset, &i, start);
 	j = 0;
 	while (str[i] != 0)
 	{
 		end = start;
-		while (find_in_base(str[i], charset) == -1 && str[i] != 0)
-		{
+		while (find_in_base(str[i], charset) == -1 && str[i] != 0 && i++ != -1)
 			end++;
-			i++;
-		}
 		*end = 0;
 		strs[j++] = ft_strdup(start);
 		*end = charset[0];
 		start = end;
-		while (find_in_base(str[i], charset) != -1 && str[i] != 0)
-		{
-			start++;
-			i++;
-		}
+		start = skip_inset(str, charset, &i, start);
 	}
 	strs[j] = 0;
 	return (strs);
