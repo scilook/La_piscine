@@ -12,8 +12,6 @@
 
 #include <malloc.h>
 
-int	find_in_base(char c, char *base);
-
 int	ft_strlen(char *str)
 {
 	int	cnt;
