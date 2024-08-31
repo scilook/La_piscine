@@ -6,9 +6,9 @@
 #    By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/29 14:01:14 by hyeson            #+#    #+#              #
-#    Updated: 2024/08/29 14:18:59 by hyeson           ###   ########.fr        #
+#    Updated: 2024/08/31 12:28:39 by hyeson           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 cc -c -Wall -Wextra -Werror *.c
-ar -r libft.a *.o
+ar rcs libft.a *.o
