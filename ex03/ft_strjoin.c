@@ -41,24 +41,24 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	int		i;
 	int		bufsize;
 
-	i = -1;
+	i = 0;
 	bufsize = 0;
-	while (++i < size)
+	while (i < size)
 	{
 		bufsize += ft_strlen(strs[i]);
 		if (i < size - 1)
 			bufsize += ft_strlen(sep);
+		i++;
 	}
 	dst = (char *)malloc(sizeof(char) * (bufsize + 1));
-	if (bufsize == 0)
-		dst = 0;
-	i = -1;
+	i = 0;
 	dst[0] = '\0';
-	while (++i < size)
+	while (i < size)
 	{
 		ft_strcat(dst, strs[i]);
 		if (i < size - 1)
 			ft_strcat(dst, sep);
+		i++;
 	}
 	dst[bufsize] = '\0';
 	return (dst);
