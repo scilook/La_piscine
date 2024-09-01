@@ -6,7 +6,7 @@
 /*   By: hyeson <hyeson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:54:59 by hyeson            #+#    #+#             */
-/*   Updated: 2024/09/01 16:26:17 by hyeson           ###   ########.fr       */
+/*   Updated: 2024/09/01 18:02:38 by hyeson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,14 @@ int	main(int ac, char **av)
 		if (ft_atoi(av[3]) != 0)
 			ft_putnbr(ft_atoi(av[1]) / ft_atoi(av[3]));
 		else
-			write(1, "Stop : division by zero", 23);
+			write(1, "Stop : division by zero\n", 24);
 	}
 	else if (av[2][0] == '%')
 	{
 		if (ft_atoi(av[3]) != 0)
 			ft_putnbr(ft_atoi(av[1]) % ft_atoi(av[3]));
 		else
-			write(1, "Stop : modulo by zero", 21);
+			write(1, "Stop : modulo by zero\n", 22);
 	}
 	else
 		write(1, "0\n", 2);
